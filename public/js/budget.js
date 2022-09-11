@@ -1,7 +1,7 @@
 const balance = document.getElementById('balance');
 const money_plus = document.getElementById('money-plus');
 const money_minus = document.getElementById('money-minus');
-const asset = document.getElementById('money-asset', 'money-minus', 'money-plus')
+const asset = document.getElementById('money-asset')
 const list = document.getElementById('list');
 const form = document.getElementById('form');
 const text = document.getElementById('text');
@@ -60,7 +60,7 @@ function addTransactionDOM(transaction) {
   const item = document.createElement('li');
 
   // Add class based on value
-  item.classList.add(transaction.amount < 0 ? 'minus' : 'plus');
+  item.classList.add(transaction.amount < 0 ? 'minus' : 'plus' );
 
   item.innerHTML = `
     ${transaction.text} <span>${sign}${Math.abs(
