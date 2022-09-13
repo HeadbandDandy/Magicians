@@ -6,10 +6,10 @@
 This Project is designed to help the user track and manage their expenses.
 
 ### Contributors
-Alec Palacios
-Brian Nelson
-Darryl Johnson
-Jiovani Rivera
+Alec Palacios,
+ Brian Nelson,
+ Darryl Johnson,
+ Jiovani Rivera.
 
 
 ### Project Proposal
