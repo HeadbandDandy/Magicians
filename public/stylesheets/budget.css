@@ -65,7 +65,7 @@ h4 {
 }
 
 .money.plus {
-  color: forestgreen ;
+  color: #026808 ;
 }
 
 .money.minus {
@@ -124,7 +124,7 @@ input[type='number'] {
 }
 
 .list li.plus {
-  border-right: 5px solid #2ecc71;
+  border-right: 5px solid #026808;
 }
 
 .list li.minus {
