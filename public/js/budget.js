@@ -1,17 +1,17 @@
+
 const balance = document.getElementById('balance');
 const money_plus = document.getElementById('money-plus');
 const money_minus = document.getElementById('money-minus');
 const list = document.getElementById('list');
 const form = document.getElementById('form');
 const text = document.getElementById('text');
-const text1 = document.getElementById('text1');
 const amount = document.getElementById('amount');
-const amount1 = document.getElementById('amount1');
-
+const assetAmount = document.getElementById('asset-amount');
+const assetText = document.getElementById('asset-text')
 
 
 const localStorageTransactions = JSON.parse(
-  localStorage.getItem('transactions')
+  localStorage.getItem('transactions', 'assets')
 );
 
 let transactions =
@@ -27,9 +27,7 @@ function addTransaction(e) {
     const transaction = {
       id: generateID(),
       text: text.value,
-      amount: +amount.value,
-      text1: text1.value,
-      amount1: +amount1.value
+      amount: +amount.value
     };
 
     transactions.push(transaction);
@@ -42,11 +40,45 @@ function addTransaction(e) {
     updateLocalStorage();
 
     text.value = '';
-    text1.value = '';
-    amount1.value = '';
     amount.value = '';
   }
 }
+
+//function should generate and add new assets
+let assets = 
+  localStorage.getItem('assets') !== null ? localStorageAssets : [];
+
+  //add asset
+  function addAsset(e) {
+    e.preventDefault();
+
+    if(assetText.value.trim() === '' || assetAmount.value.trim() === '') {
+      alert('Please add a text amount');
+    } else {
+      const asset = {
+        id: generateID(),
+        assetText: assetText.value,
+        assetAmount: +assetAmount.value
+      };
+
+      asset.push(asset);
+
+      addAssetDOM(asset);
+
+      updateValues();
+
+      updateLocalStorage()
+
+      assetText = '';
+      assetAmount = '';
+    }
+  }
+
+
+
+
+
+
 
 // Generate random ID
 function generateID() {
@@ -73,6 +105,27 @@ function addTransactionDOM(transaction) {
 
   list.appendChild(item);
 }
+
+// add asset to DOM list
+
+function addAssetDOM(asset) {
+  //get the sign
+  const sign = asset.assetAmount < 0 ? '-' : '+';
+
+  const item = document.createElement('li');
+
+  //class added based on value 
+  item.classList.add(asset.assetAmount < 0 ? 'minus' : 'plus');
+  item.innerHTML = `
+  ${asset.assetText} <span>${sign}${Math.abs(
+    asset.assetAmount
+  )}</span> <button class="asset-delete" onclick="removeAsset(${
+    asset.id
+  })">x</button>
+  `;
+
+  list.appendChild(item)
+};
 
 // Update the balance, income and expense
 function updateValues() {
