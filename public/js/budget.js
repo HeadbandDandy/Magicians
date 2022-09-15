@@ -126,6 +126,7 @@ function addAssetDOM(asset) {
   `;
 
   assetList.appendChild(item)
+  console.log(document.querySelector('span').innerHTML)
 };
 
 // Update the balance, income and expense
