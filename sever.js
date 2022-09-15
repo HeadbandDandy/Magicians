@@ -1,0 +1,9 @@
+const express = require('express');
+const app = express();
+const passport= require('passport-local')
+const LocalStrategy= require('passport-local').Strategy;
+const bodyParser = require("body-parse");
+const mysql = require('mysql');
+const crypto = require('crypto');
+var session = require('express-session');
+var MySQLStore = require('express-mysql-session')(session);
