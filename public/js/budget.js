@@ -12,8 +12,8 @@ const form = document.getElementById('form');
 const assetForm = document.getElementById('assetForm');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
-const assetAmount = document.getElementById('asset-amount');
-const assetText = document.getElementById('asset-text')
+const assetAmount = document.getElementById('assetAmount');
+const assetText = document.getElementById('assetText')
 
 
 const localStorageTransactions = JSON.parse(
@@ -115,20 +115,31 @@ function addTransactionDOM(transaction) {
 // add asset to DOM list
 
 function addAssetDOM(asset) {
+  console.log(asset);
   //get the sign
   const sign = asset.assetAmount < 0 ? '-' : '+';
 
+console.log(sign);
+
   const item = document.createElement('li');
+
+  // const showAsset = sign.value();
+  // console.log(showAsset);
 
   //class added based on value 
   item.classList.add(asset.assetAmount < 0 ? 'minus' : 'plus');
+
+  console.log(asset.assetAmount);
+
+
   item.innerHTML = `
-  ${asset.assetText} <span id=>${sign}${Math.abs(
-    asset.assetAmount
+  ${asset.text} <span id=>${sign}${Math.abs(
+    asset.amount
   )}</span> <button class="asset-delete" onclick="removeAsset(${
     asset.id
   })">x</button>
   `;
+console.log(asset.text, asset.amount);
 
   assetList.appendChild(item)
   console.log(document.querySelector('span').innerHTML)

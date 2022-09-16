@@ -108,13 +108,15 @@ input[type='asset-number'] {
   outline: 0;
 }
 
-.list {
+.list,
+.assetList {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
 }
 
-.list li {
+.list li,
+.assetList li {
   background-color: #fff;
   box-shadow: var(--box-shadow);
   color: #333;
@@ -125,15 +127,18 @@ input[type='asset-number'] {
   margin: 10px 0;
 }
 
-.list li.plus {
+.list li.plus,
+.assetList li.plus {
   border-right: 5px solid #026808;
 }
 
-.list li.minus {
+.list li.minus,
+.assetList li.minus {
   border-right: 5px solid #c0392b;
 }
 
-.delete-btn {
+.delete-btn,
+.asset-delete {
   cursor: pointer;
   background-color: #e74c3c;
   border: 0;
@@ -149,6 +154,7 @@ input[type='asset-number'] {
   transition: opacity 0.3s ease;
 }
 
-.list li:hover .delete-btn {
+.list li:hover .delete-btn,
+.assetList li:hover .asset-delete{
   opacity: 1;
 }
