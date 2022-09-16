@@ -23,3 +23,26 @@ app.use(session({
         maxAge:1000*60*60*24,
      }
 }));
+
+app.use(passport.initialize());
+app.use(passport.session());
+app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
+app.use(express.static('public'));
+app.set("view engine", "ejs");
+
+var connection = mysql.createConnection({
+    host: "localhost",
+    user: "root",
+    database: "user",
+    multipleStatements: true
+});
+connection.connect((err) => {
+    if (!err) {
+        console.log("Connected");
+    } else {
+        console.log("Connection Failed");
+    }
+});
