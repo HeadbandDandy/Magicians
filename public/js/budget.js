@@ -1,7 +1,9 @@
 const balance = document.getElementById('balance');
 const assetBalance = document.getElementById('assetBalance')
 const asset_plus = document.getElementById('asset-plus')
+
 const asset_minus = document.getElementById('asset-minus')
+
 const money_plus = document.getElementById('money-plus');
 const money_minus = document.getElementById('money-minus');
 const list = document.getElementById('list');
@@ -10,8 +12,8 @@ const form = document.getElementById('form');
 const assetForm = document.getElementById('assetForm');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
-const assetAmount = document.getElementById('asset-amount').value;
-const assetText = document.getElementById('asset-text')
+const assetAmount = document.getElementById('assetAmount');
+const assetText = document.getElementById('assetText')
 
 
 const localStorageTransactions = JSON.parse(
@@ -51,6 +53,9 @@ function addTransaction(e) {
 const localStorageAssets = JSON.parse(
   localStorage.getItem('assets')
 );
+
+
+
 
 let assets = 
   localStorage.getItem('assets') !== null ? localStorageAssets : [];
@@ -110,19 +115,22 @@ function addTransactionDOM(transaction) {
 // add asset to DOM list
 
 function addAssetDOM(asset) {
+  console.log(asset);
   //get the sign
   const sign = asset.assetAmount < 0 ? '-' : '+';
 
-  console.log(sign)
+console.log(sign);
 
   const item = document.createElement('li');
 
-  const value = asset.assetAmount.value;
+  // const showAsset = sign.value();
+  // console.log(showAsset);
 
   //class added based on value 
-  item.classList.add(value < 0 ? 'minus' : 'plus');
+  item.classList.add(asset.assetAmount < 0 ? 'minus' : 'plus');
 
-console.log(asset.assetAmount)
+  console.log(asset.assetAmount);
+
 
   item.innerHTML = `
   ${asset.text} <span id=>${sign}${Math.abs(
@@ -131,10 +139,10 @@ console.log(asset.assetAmount)
     asset.id
   })">x</button>
   `;
-
-  console.log(assetText)
+console.log(asset.text, asset.amount);
 
   assetList.appendChild(item)
+  console.log(document.querySelector('span').innerHTML)
 };
 
 // Update the balance, income and expense
@@ -162,11 +170,13 @@ function updateAsset() {
   const assetAmount = assets.map(asset => asset.amount);
 
   const assetTotal = assetAmount.reduce((acc, item) => (acc += item), 0).toFixed(2);
+
   
   const assetDepreciation = (
     assetAmount.filter(item => item < 0).reduce((acc, item) => (acc += item), 0) *
     -1
   ).toFixed(2);
+
 
   const assetAppreciation = assetAmount
     .filter(item => item > 0)
@@ -174,9 +184,11 @@ function updateAsset() {
     .toFixed(2);
 
 
+
     assetBalance.innerText = `$${assetTotal}`;
     asset_plus.innerText = `$${assetAppreciation}`;
     asset_minus.innerText = `$${assetDepreciation}`;
+
 }
 
 // Remove transaction by ID

@@ -1,4 +1,3 @@
-
 :root {
   --box-shadow: 0 1px 3px rgba(0, 0, 0, 0.12), 0 1px 2px rgba(0, 0, 0, 0.24);
 }
@@ -79,7 +78,9 @@ label {
 }
 
 input[type='text'],
-input[type='number'] {
+input[type='number'],
+input[type='asset-text'],
+input[type='asset-number'] {
   border: 1px solid #dedede;
   border-radius: 2px;
   display: block;
@@ -106,13 +107,15 @@ input[type='number'] {
   outline: 0;
 }
 
-.list {
+.list,
+.assetList {
   list-style-type: none;
   padding: 0;
   margin-bottom: 40px;
 }
 
-.list li {
+.list li,
+.assetList li {
   background-color: #fff;
   box-shadow: var(--box-shadow);
   color: #333;
@@ -123,15 +126,18 @@ input[type='number'] {
   margin: 10px 0;
 }
 
-.list li.plus {
+.list li.plus,
+.assetList li.plus {
   border-right: 5px solid #026808;
 }
 
-.list li.minus {
+.list li.minus,
+.assetList li.minus {
   border-right: 5px solid #c0392b;
 }
 
-.delete-btn {
+.delete-btn,
+.asset-delete {
   cursor: pointer;
   background-color: #e74c3c;
   border: 0;
@@ -147,6 +153,7 @@ input[type='number'] {
   transition: opacity 0.3s ease;
 }
 
-.list li:hover .delete-btn {
+.list li:hover .delete-btn,
+.assetList li:hover .asset-delete{
   opacity: 1;
 }
