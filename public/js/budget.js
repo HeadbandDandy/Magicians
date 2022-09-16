@@ -10,7 +10,7 @@ const form = document.getElementById('form');
 const assetForm = document.getElementById('assetForm');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
-const assetAmount = document.getElementById('asset-amount');
+const assetAmount = document.getElementById('asset-amount').value;
 const assetText = document.getElementById('asset-text')
 
 
@@ -113,20 +113,28 @@ function addAssetDOM(asset) {
   //get the sign
   const sign = asset.assetAmount < 0 ? '-' : '+';
 
+  console.log(sign)
+
   const item = document.createElement('li');
 
+  const value = asset.assetAmount.value;
+
   //class added based on value 
-  item.classList.add(asset.assetAmount < 0 ? 'minus' : 'plus');
+  item.classList.add(value < 0 ? 'minus' : 'plus');
+
+console.log(asset.assetAmount)
+
   item.innerHTML = `
-  ${asset.assetText} <span id=>${sign}${Math.abs(
-    asset.assetAmount
+  ${asset.text} <span id=>${sign}${Math.abs(
+    asset.amount
   )}</span> <button class="asset-delete" onclick="removeAsset(${
     asset.id
   })">x</button>
   `;
 
+  console.log(assetText)
+
   assetList.appendChild(item)
-  console.log(document.querySelector('span').innerHTML)
 };
 
 // Update the balance, income and expense
