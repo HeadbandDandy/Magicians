@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-const { Sequelize } = require('sequelize');
+//const { Sequelize } = require('sequelize');
 
 const sess = {
     secret: 'Super secret secret',
@@ -24,7 +24,6 @@ const sess = {
     store: new SequelizeStore({
         db: sequelize
     })
-
 };
 
 app.use(session(sess));
