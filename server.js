@@ -1,43 +1,44 @@
-const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;
-const express = require('express');
-const bodyParser = require(body-parser);
-const mysql = ('mysql');
+const path = require('path');
+const bodyParser = require('body-parser');
+const passport = require('passport');
+const passportLocal = require('passport-local');
 const crypto = require('crypto');
+const mysql = require('mysql2');
+const express = require('express');
 const session = require('express-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
-
+const exphbs = require('express-handlebars');
 
 const app = express();
 const PORT = process.env.PORT || 3001;
 
-const sequelize = require('');
-const { Sequelize } = require('sequelize');
+const sequelize = require("./config/connection");
+// const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 const sess = {
-    secret: '',
-    cookie: {},
-    resave: false,
-    saveUninitialized: true,
-    store: new SequelizeStore({
-        db: sequelize
-    })
-
+  secret: '',
+  cookie: {},
+  resave: false,
+  saveUninitialized: true,
+  store: new SequelizeStore({
+    db: sequelize
+  })
 };
 
 app.use(session(sess));
 
-const 
+// const helpers = require('./utils/helpers');
 
+const hbs = exphbs.create({ helpers });
 
-//express MiddleWare
+app.engine('handlebars', hbs.engine);
+app.set('view engine', 'handlebars');
+
 app.use(express.json());
-app.use(express.urlencoded({extended: false}));
+app.use(express.urlencoded({ extended: false }));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require(''))
+app.use(require('./controllers/'));
 
-
-sequelize.sync({force: false }).then(() => {
-    app.listen(PORT, () => console.log('Now Listening'))
-})
+sequelize.sync({ force: false }).then(() => {
+  app.listen(PORT, () => console.log('Now listening'));
+});
