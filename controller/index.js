@@ -2,8 +2,8 @@
 
 const router = require('express').Router();
 
-// const budgetRoutes = require('./budget-routes');
+const budgetRoutes = require('../controller/api/budget-routes');
 
-// router.use('/budgets', budgetRoutes);
+router.use('/budgets', budgetRoutes);
 
 module.exports = router;

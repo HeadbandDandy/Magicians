@@ -28,7 +28,8 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({});
+const hbs = exphbs.create({ helpers });
+const helpers = require('./utils/authorization')
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
