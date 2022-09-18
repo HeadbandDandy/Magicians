@@ -1,0 +1,42 @@
+
+<!-- Missing export/import functions -->
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Login</title>
+</head>
+<body>
+    <section id="login">
+        <form action="/login" method="post" style: "">
+            <div class="container loginDiv">
+                <h1 class="loginTitle"> Login</h1>
+                <div class="userInput">
+                    <label>Username : </label>
+                    <input type="text" placeholder="Enter a valid username" name="username" required>
+                </div>
+                <div class="passwordInput">
+                    <label>Password : </label>
+                    <input type="text" placeholder="Enter a valid Password" name="password" required>
+                </div>
+
+                <p class="memberJoin">
+                    Don't have an account? <a href="/register" class="registerNow">Make an account here!</a>
+                </p>
+
+                <div class="loginButton">
+                    <button class="singlebutton btn btn-primary" formaction="/login" type="submit">Login!</button>
+                </div>
+
+
+
+            </div>
+
+        </form>
+    </section>
+    
+</body>
+</html>
