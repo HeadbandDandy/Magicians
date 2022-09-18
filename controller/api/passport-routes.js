@@ -31,3 +31,30 @@ app.get('/register', (req, res, next) => {
     console.log('Inside get');
     res.render('register')
 })
+
+
+// route below posts for registry
+
+app.post('/register', userExists, (req, res, next) => {
+    console.log("inside post");
+    console.log(req.body.password);
+    const saltHash = genPassword(req.body.password);
+    console.log(saltHash);
+    const salt = saltHash.salt;
+    const hash = saltHash.hash;
+
+    conncection.query('Insert into users(username, hash, salt, isAdmin) values(?, ?, ?, 0) ', [req.body.username, hash, salt], function(error, results, fields) {
+        if(error)
+        {
+            console.log('Error')
+        }
+        else
+        {
+            console.log('Successfully Entered')
+        }
+    })
+
+    res.redirect('/login')
+})
+
+app.post('/login', passport.authenticate('local', {failureRedirect: '/login-failure', successRedirect: '/login-success'}))
