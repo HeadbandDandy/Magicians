@@ -75,3 +75,20 @@ app.get('/admin-route', isAdmin, (req, res, next) => {
 
 //get routes below will contain unauthorized routes and the duplicate user routes
 
+app.get('/notAuthorized',(req, res, next) => {
+    console.log('inside get')
+    res.send('<h1>You are not authorized to view this material</h1> <p> <a href="/login">Retry Logging In!</a></p>')
+})
+
+app.get('/notAuthoririzedAdmin', (req, res, next) => {
+    console.log('inside get')
+    res.send('<h1>You are not authorized to view this page</h1> <p> <a href="/login">Retry to log in as an administrator.</a></p>')
+})
+
+
+app.get('/userAlreadyExists', (req, res, next) => {
+    console.log('inside get')
+    res.send('<h1>Sorry this user already exists</h1> <p> <a href="/register">Register with your correct information!</a></p>')
+})
+
+
