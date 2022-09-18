@@ -1,13 +1,19 @@
 const balance = document.getElementById('balance');
+const assetBalance = document.getElementById('assetBalance')
+const asset_plus = document.getElementById('asset-plus')
+
+const asset_minus = document.getElementById('asset-minus')
+
 const money_plus = document.getElementById('money-plus');
 const money_minus = document.getElementById('money-minus');
 const list = document.getElementById('list');
+const assetList = document.getElementById('assetList');
 const form = document.getElementById('form');
+const assetForm = document.getElementById('assetForm');
 const text = document.getElementById('text');
 const amount = document.getElementById('amount');
-const assetAmount = document.getElementById('asset-amount');
-const assetText = document.getElementById('asset-text')
-const assetForm = document.getElementById('asset-form')
+const assetAmount = document.getElementById('assetAmount');
+const assetText = document.getElementById('assetText')
 
 
 const localStorageTransactions = JSON.parse(
@@ -43,54 +49,46 @@ function addTransaction(e) {
     amount.value = '';
   }
 }
-
+// asset local storage below
 const localStorageAssets = JSON.parse(
   localStorage.getItem('assets')
-)
+);
 
-//function should generate and add new assets
+
+
+
 let assets = 
   localStorage.getItem('assets') !== null ? localStorageAssets : [];
 
   //add asset
   function addAsset(e) {
     e.preventDefault();
-
-    if(text.value.trim() === '' || amount.value.trim() === '') {
+  
+    if(assetText.value.trim() === '' || assetAmount.value.trim() === '') {
       alert('Please add a text amount');
     } else {
       const asset = {
-        id: generateAssetID(),
-        assetText: assetText.value,
-        assetAmount: +assetAmount.value
+        id: generateID(),
+        text: assetText.value,
+        amount: +assetAmount.value
       };
 
-      asset.push(asset);
+      assets.push(asset);
 
       addAssetDOM(asset);
 
-      updateValues();
+      updateAsset();
 
       updateLocalStorage()
 
-      assetText = '';
-      assetAmount = '';
+      assetText.value = '';
+      assetAmount.value = '';
     }
   }
-
-
-
-
-
-
 
 // Generate random ID
 function generateID() {
   return Math.floor(Math.random() * 100000000);
-}
-
-function generateAssetID() {
-  return Math.floor(Math.random() * 10000000000)
 }
 
 // Add transactions to DOM list
@@ -117,22 +115,34 @@ function addTransactionDOM(transaction) {
 // add asset to DOM list
 
 function addAssetDOM(asset) {
+  console.log(asset);
   //get the sign
-  const sign = asset.amount < 0 ? '-' : '+';
+  const sign = asset.assetAmount < 0 ? '-' : '+';
+
+console.log(sign);
 
   const item = document.createElement('li');
 
+  // const showAsset = sign.value();
+  // console.log(showAsset);
+
   //class added based on value 
   item.classList.add(asset.assetAmount < 0 ? 'minus' : 'plus');
+
+  console.log(asset.assetAmount);
+
+
   item.innerHTML = `
-  ${asset.assetText} <span>${sign}${Math.abs(
-    asset.assetAmount
+  ${asset.text} <span id=>${sign}${Math.abs(
+    asset.amount
   )}</span> <button class="asset-delete" onclick="removeAsset(${
     asset.id
   })">x</button>
   `;
+console.log(asset.text, asset.amount);
 
-  list.appendChild(item)
+  assetList.appendChild(item)
+  console.log(document.querySelector('span').innerHTML)
 };
 
 // Update the balance, income and expense
@@ -156,25 +166,29 @@ function updateValues() {
   money_minus.innerText = `$${expense}`;
 }
 
-// Update the balance, income and expense
-function updateAssets() {
-  const amounts = assets.map(asset => asset.amount);
+function updateAsset() {
+  const assetAmount = assets.map(asset => asset.amount);
 
-  const total = amounts.reduce((acc, item) => (acc += item), 0).toFixed(2);
+  const assetTotal = assetAmount.reduce((acc, item) => (acc += item), 0).toFixed(2);
 
-  const income = amounts
+  
+  const assetDepreciation = (
+    assetAmount.filter(item => item < 0).reduce((acc, item) => (acc += item), 0) *
+    -1
+  ).toFixed(2);
+
+
+  const assetAppreciation = assetAmount
     .filter(item => item > 0)
     .reduce((acc, item) => (acc += item), 0)
     .toFixed(2);
 
-  const expense = (
-    amounts.filter(item => item < 0).reduce((acc, item) => (acc += item), 0) *
-    -1
-  ).toFixed(2);
 
-  balance.innerText = `$${total}`;
-  money_plus.innerText = `$${income}`;
-  money_minus.innerText = `$${expense}`;
+
+    assetBalance.innerText = `$${assetTotal}`;
+    asset_plus.innerText = `$${assetAppreciation}`;
+    asset_minus.innerText = `$${assetDepreciation}`;
+
 }
 
 // Remove transaction by ID
@@ -186,36 +200,33 @@ function removeTransaction(id) {
   init();
 }
 
-//removes assets by id
+//removes asset by id
 function removeAsset(id) {
-  assets = assets.filet(asset => asset.id !== id);
+  assets = assets.filter(asset => asset.id !== id);
 
-  updateLocalStorage()
+  updateLocalStorage();
 
   init()
 }
-
-
-
 // Update local storage transactions
 function updateLocalStorage() {
   localStorage.setItem('transactions', JSON.stringify(transactions));
+  localStorage.setItem('assets', JSON.stringify(assets));
 }
-
-
 
 // Init app
 function init() {
   list.innerHTML = '';
+  assetList.innerHTML = '';
+  
 
   transactions.forEach(addTransactionDOM);
-  updateValues();
-
   assets.forEach(addAssetDOM);
-  updateValues()
+  updateValues();
+  updateAsset();
 }
 
 init();
 
 form.addEventListener('submit', addTransaction);
-form.addEventListener('submit', addAsset);
+assetForm.addEventListener('submit', addAsset);

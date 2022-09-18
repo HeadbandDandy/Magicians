@@ -32,26 +32,22 @@
 
     <div class="container">
       <h4>Asset Balance</h4>
-      <h1 id="assetBalance">$0.00</h1>
+      <h1 id="balance">$0.00</h1>
 
       <div class="inc-exp-container">
         <div>
           <h4>Asset Appreciation</h4>
-          <p id="asset-plus" class="asset plus">+$0.00</p>
+          <p id="money-plus" class="money plus">+$0.00</p>
         </div>
         <div>
           <h4>Asset Depreciation</h4>
-          <p id="asset-minus" class="asset minus">-$0.00</p>
+          <p id="money-minus" class="money minus">-$0.00</p>
         </div>
 
       </div>
 
       <h3>Transaction History</h3>
       <ul id="list" class="list">
-
-      </ul>
-      <h3>Asset History</h3>
-      <ul id="assetList" class="assetList">
 
       </ul>
 
@@ -72,17 +68,16 @@
         <button class="btn">Add transaction</button>
 
       </form>
-      
       <h3>Asset Control Center</h3>
-      <form id="assetForm">
+      <form id="asset-form">
         <div class="asset-control">
           <label for="asset-text">Text</label>
-          <input type="asset-text" id="assetText" placeholder="Manage your assets" />
+          <input type="asset-text" id="asset-text" placeholder="Manage your assets" />
         </div>
         <div class="asset-control">
           <label for="asset-amount">Amount <br />
             (negative - asset has gone down || positive - asset has gone up)</label>
-          <input type="asset-number" id="assetAmount" placeholder="What has your asset been doing?" />
+          <input type="asset-number" id="asset-amount" placeholder="What has your asset been doing?" />
         </div>
 
 
@@ -91,7 +86,6 @@
 
 
         <button class="btn">Manage Asset</button>
-        
       </form>
 
 
@@ -103,4 +97,4 @@
       <script src="/public/js/budget.js"></script>
 </body>
 
-</html>
+</html>\
