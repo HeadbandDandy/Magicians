@@ -33,7 +33,7 @@ app.get('/register', (req, res, next) => {
 })
 
 
-// route below posts for registry
+// route below posts for registry and successful login 
 
 app.post('/register', userExists, (req, res, next) => {
     console.log("inside post");
@@ -58,3 +58,20 @@ app.post('/register', userExists, (req, res, next) => {
 })
 
 app.post('/login', passport.authenticate('local', {failureRedirect: '/login-failure', successRedirect: '/login-success'}))
+
+
+// below contains the get routes for admin/protection/authorized user
+
+app.get('/protected-route', isAuthorized, (req, res, next) => {
+    res.send('<h1>You are authenticated</h1><p> <a href="/logout">Logout and Refresh the Browser!</a></p>');
+
+
+})
+
+
+app.get('/admin-route', isAdmin, (req, res, next) => {
+    res.send('<h1>You are an administrator!</h1><p> <a href="/logout">Log</a></p>')
+})
+
+//get routes below will contain unauthorized routes and the duplicate user routes
+
