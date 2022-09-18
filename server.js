@@ -2,9 +2,9 @@
 //const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 const express = require('express');
-//const bodyParser = require(body-parser);
-//const mysql = ('mysql');
-//const crypto = require('crypto');
+// const bodyParser = require(body-parser);
+const mysql = ('mysql');
+const crypto = require('crypto');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
 
@@ -14,7 +14,7 @@ const PORT = process.env.PORT || 3001;
 const sequelize = require('./config/connection');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
-//const { Sequelize } = require('sequelize');
+const { Sequelize } = require('sequelize');
 
 const sess = {
     secret: 'Super secret secret',
@@ -28,8 +28,8 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({ helpers });
-const helpers = require('./utils/authorization')
+const hbs = exphbs.create({});
+// const helpers = require('./utils/authorization')
 
 app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
