@@ -2,7 +2,6 @@ const passport = require('passport')
 const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 const express = require('express');
-const bodyParser = require(body-parser);
 const mysql = ('mysql');
 const crypto = require('crypto');
 const session = require('express-session');
