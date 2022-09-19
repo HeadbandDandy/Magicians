@@ -4,7 +4,7 @@ const path = require('path');
 const express = require('express');
 const mysql = ('mysql');
 const crypto = require('crypto');
-const expressSession = require('express-session');
+const session = require('express-session');
 const exphbs = require('express-handlebars');
 
 const app = express(),
@@ -16,7 +16,7 @@ const MySQLStore = require('express-mysql-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 
-const session = {
+const sess = {
     secret: 'Super secret secret',
     cookie: {},
     resave: false,
@@ -28,14 +28,14 @@ const session = {
 
 //Passport and Login MiddleWare
 app.use(passport.initialize());
-app.use(passport.expressSession());
+app.use(passport.session());
 app.use(bodyParser.json());
 app.use(bodyParser.urlencoded({
     extended: true
 }))
 
 
-app.use(session());
+app.use(session(sess));
 
 const hbs = exphbs.create({});
 // const helpers = require('./utils/authorization')
