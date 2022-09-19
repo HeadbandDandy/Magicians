@@ -1,7 +1,9 @@
-const { appendFile } = require('fs');
-const path = require('path')
+
 
 const router = require('express').Router();
+const { appendFile } = require('fs');
+const path = require('path')
+const login = require('/views/partials/login.ejs')
 
 //get routes for passPort
 
