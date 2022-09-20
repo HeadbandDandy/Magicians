@@ -1,14 +1,22 @@
 const Sequelize = require('sequelize');
 
-require('dotenv').config();
+require('dotenv-safe').config({allowEmptyValues: false});
 
 
-const sequelize = process.env.JAWSDB_URL
-    ? new Sequelize(process.env.JAWSDB_URL)
-    : new Sequelize(process.env.DB_NAME, process.env.DB_USER, process.env.DB_PASSWORD, {
+
+module.exports = {
+    client: 'mysql2',
+    version: process.env.MYSQL_Version || 8,
+    connection: {
         host: 'localhost',
-        dialect: 'mysql',
+        user: process.env.DB_USER,
+        password: process.env.DB_PASSWORD,
+        database: 'dgb_login',
         port: 3306
-    })
-
-module.exports = sequelize
+    },
+    migrations: {
+        extension:'ts',
+        directory: './migrations',
+    },
+    debug: process.env.LOG_LEVEL === 'debug'
+}

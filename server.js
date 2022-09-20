@@ -1,8 +1,8 @@
 const passport = require('passport')
-const LocalStrategy = require('passport-local').Strategy;
 const path = require('path');
 const express = require('express');
 const mysql = ('mysql');
+const bcrypt = require('bcrypt')
 const crypto = require('crypto');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
@@ -26,13 +26,7 @@ const sess = {
     })
 };
 
-//Passport and Login MiddleWare
-app.use(passport.initialize());
-app.use(passport.session());
-app.use(bodyParser.json());
-app.use(bodyParser.urlencoded({
-    extended: true
-}))
+
 
 
 app.use(session(sess));
