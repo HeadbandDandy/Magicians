@@ -2,7 +2,7 @@ const { Budget } = require('../models');
 
 const budgetdata = [
     {
-        transaction_id: 1,
+        budgetname: 'main'
     }
 ];
 

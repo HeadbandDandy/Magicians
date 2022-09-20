@@ -1,0 +1,32 @@
+<section>
+  <h2>Create New Budget</h2>
+
+  <form class="new-budget-form">
+    <div>
+      <label for="budget-title">Title</label>
+      <input type="text" id="budget-title" name="budget-title" />
+    </div>
+    <div>
+      <label for="budget-amount">Amount</label>
+      <input id="budget-amount" name="budget-amount" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+
+{{#if budgets.length}}
+<section>
+  <h2>Your Budgets</h2>
+  <ol>
+    {{#each budgets as |budget|}}
+    <li>
+      {{> budget-info budget}}
+      <a href="/dashboard/edit/{{budget.id}}" class="edit-link">Edit Budget</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+
+<script src="/javascript/add-budget.js"></script>
