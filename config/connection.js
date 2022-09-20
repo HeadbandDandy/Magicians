@@ -3,7 +3,6 @@ const Sequelize = require('sequelize');
 require('dotenv-safe').config({allowEmptyValues: false});
 
 
-
 module.exports = {
     client: 'mysql2',
     version: process.env.MYSQL_Version || 8,
