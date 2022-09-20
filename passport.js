@@ -3,6 +3,7 @@
 const passport = require("passport");
 const { ConnectionAcquireTimeoutError } = require("sequelize");
 const { resourceLimits } = require("worker_threads");
+const router = require("./controller");
 
 
 
@@ -94,5 +95,25 @@ function isAdmin(req, res, next)
     {
         res.redirect('/notAuthorizedAdmin')
     }
+}
+
+//checks to see if the use exists
+
+function userExists(req, res, next) 
+{
+    connection.query('Select * from users where username=? ', [req.body.username], function(error, results, fields){
+        if(error)
+            {
+                console.log('Error');
+            }
+        else if(results.length>0)
+            {
+                res.redirect('userAlreadyExists')
+            }
+            else{
+                next();
+            }
+    })  
+
 }
 
