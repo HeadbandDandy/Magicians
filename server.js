@@ -1,11 +1,11 @@
-const passport = require('passport')
 const path = require('path');
+
 const express = require('express');
-const mysql = ('mysql');
-const bcrypt = require('bcrypt')
-const crypto = require('crypto');
+const bodyParser = require('body-parser');
 const session = require('express-session');
 const exphbs = require('express-handlebars');
+//const routes = require('./controllers/')
+//const passport = require('passport')
 
 const app = express(),
     bodyParser = require('body-parser'),
@@ -15,13 +15,20 @@ const sequelize = require('./config/connection');
 const MySQLStore = require('express-mysql-session');
 const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
+app.use(bodyParser.urlencoded({
+    extended: false
+  }))
+
+
+
+//const { Sequelize } = require('sequelize');
 
 const sess = {
     secret: 'Super secret secret',
     cookie: {},
     resave: false,
-    saveUninitialized: true,
-    store: new MySQLStore({
+    saveUninitialized: false,
+    store: new SequelizeStore({
         db: sequelize
     })
 };
@@ -31,20 +38,35 @@ const sess = {
 
 app.use(session(sess));
 
-const hbs = exphbs.create({});
-// const helpers = require('./utils/authorization')
+// app.use(passport.initialize())
+// app.use(passport.session())
+
+const helpers = require('./utils/helpers');
+
+const hbs = exphbs.create({ helpers });
 
 app.engine('handlebars', hbs.engine);
-app.set('view engine', 'handlebars', 'ejs');
+// app.engine('handlebars', hbs.engine({
+//     defaultLayout: 'main',
+//     extname: '.handlebars',
+//     layoutsDir: path.join(__dirname),
+//     partialsDir: path.join(__dirname)
+//   }))
+
+app.set('view engine', 'handlebars');
 
 //express MiddleWare
 app.use(express.json());
 app.use(express.urlencoded({extended: false}));
 app.use(express.static(path.join(__dirname, 'public')));
 
-app.use(require('./controller'));
+app.use(require('./controllers/'));
+
+// require('./user').init(app)
+// require('./note').init(app)
 
 
 sequelize.sync({force: false }).then(() => {
     app.listen(PORT, () => console.log('Now Listening'))
 })
+

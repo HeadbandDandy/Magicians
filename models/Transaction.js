@@ -29,6 +29,20 @@ Transaction.init(
                 model: 'budget',
                 key: 'id'
             }
+        },
+            // budget_title: {
+            //     type: DataTypes.INTEGER,
+            //     references: {
+            //         model: 'budget',
+            //         key: 'title'
+            //     }
+        // },
+        user_id: {
+            type: DataTypes.INTEGER,
+            references: {
+                model: 'user',
+                key: 'id'
+            }
         }
     },
     {

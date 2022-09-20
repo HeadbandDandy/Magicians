@@ -1,0 +1,35 @@
+<article>
+  <a href="/dashboard"> &larr; Back to dashboard</a>
+  <h2>
+    Edit Budget
+  </h2>
+  <form class="edit-budget-form">
+    <div>
+      <input name="budget-title" type="text" value="{{budget.title}}" />
+      <span>({{format_url post.post_url}})</span>
+    </div>
+    <div>
+      {{user_id}} {{format_plural "point" post.vote_count}} by you on {{format_date post.created_at}}
+      |
+      <a href="/budget/{{budget.id}}">{{budget.transactions.length}} {{format_plural "budget" budgets.transactions.length}}</a>
+    </div>
+    <button type="submit">Save Budget</button>
+    <button type="button" class="delete-budget-btn">Delete Budget</button>
+  </form>
+</article>
+
+<form class="transaction-form">
+  <div>
+    <textarea name="transaction-body"></textarea>
+  </div>
+
+  <div>
+    <button type="submit">add transaction</button>
+  </div>
+</form>
+
+{{> transaction budget.transactions}}
+
+<script src="/javascript/edit-budget.js"></script>
+<script src="/javascript/delete-budget.js"></script>
+{{!-- <script src="/javascript/transaction.js"></script> --}}

@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DontGoBroke</title>
+   <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</head>
+
+<body>
+  
+  <nav>
+    <div class="nav-wrapper black">
+      
+      <a href="/">DontGoBroke</a>
+    
+      <ul id="nav-mobile" class="right hide-on-med-and-down">
+        
+        <li>{{#if loggedIn}}
+        <a href="/dashboard">dashboard  <button id="logout" class="btn-no-style">logout</button></a>
+        {{!-- <button id="logout" class="btn-no-style">logout</button> --}}
+        {{else}}
+        <a href="/login">login</a>
+        {{/if}}</li>
+        
+
+        
+      </ul>
+    </div>
+  </nav>
+    
+    <br>
+
+    <main>
+      {{{ body }}}
+    </main>
+    
+    <br>
+    
+        <footer class="page-footer black">
+          
+          <div class="footer-copyright">
+            
+            © 2022 Copyright
+            <a class="grey-text text-lighten-4 right" href="/">DontGoBroke</a>
+            </div>
+          </div>
+        </footer>
+  
+  
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
+

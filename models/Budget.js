@@ -11,14 +11,28 @@ Budget.init(
             autoIncrement: true,
             allowNull: false
         },
-        transaction_id: {
+        title: {
+            type: DataTypes.STRING,
+            allowNull: false,
+        },
+        budgetAmount: {
             type: DataTypes.INTEGER,
             allowNull: false,
+        },
+        user_id: {
+            type: DataTypes.INTEGER,
             references: {
-                model: 'transaction',
+                model: 'user',
                 key: 'id'
             }
-          }   
+        },
+        // transaction_text: {
+        //     type: DataTypes.STRING,
+        //     references: {
+        //         model: 'transaction',
+        //         key: 'transaction_text'
+        //     }
+        // }
         },
 {
     sequelize,

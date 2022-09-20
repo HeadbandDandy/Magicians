@@ -35,9 +35,16 @@ User.init(
       type: DataTypes.STRING,
       allowNull: false,
       validate: {
-        len: [4]
+        len: [1]
       }
-    }
+    },
+    budget_id: {
+        type: DataTypes.INTEGER,
+        references: {
+            model: 'budget',
+            key: 'id'
+        }
+    },
   },
   {
     hooks: {

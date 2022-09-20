@@ -1,0 +1,14 @@
+<article class="budget">
+  <div class="title">
+    
+    <div>{{id}}</div>
+
+  </div>
+
+  <div class="meta">
+    {{id}} {{Budget}} {{format_plural "dollar" }} by {{user_id}} on {{format_date created_at}}
+    |
+    <a href="/budget/{{id}}">{{transactions.length}} {{format_plural "transaction" transactions.length}}</a>
+  </div>
+</article>
+
