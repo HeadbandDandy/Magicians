@@ -8,7 +8,6 @@ const exphbs = require('express-handlebars');
 //const passport = require('passport')
 
 const app = express(),
-    bodyParser = require('body-parser'),
     PORT = process.env.PORT || 3001;
 
 const sequelize = require('./config/connection');
