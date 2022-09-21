@@ -1,9 +1,12 @@
 const router = require('express').Router();
 //const sequelize = require('../config/connection');
 const { Budget, Transaction, User } = require('../models');
-
-// router.get('/', (req, res) => {
-//   res.render('homepage');
+  
+// // Route to display dynamic src images
+// router.get("/", (req, res) => {
+//    imageList = [];
+//   imageList.push({ src: "/images/starsstuff.png", name: "stars" });
+//   res.render("homepage", { imageList: imageList });
 // });
 
 router.get('/', (req, res) => {
@@ -33,7 +36,7 @@ router.get('/', (req, res) => {
       // pass a single budget object into the homepage template
       const budgets = dbBudgetData.map(budget => budget.get({ plain: true }));
       console.log(dbBudgetData);
-      res.render('homepage', { 
+      res.render('dashboard', { 
         budgets,
       loggedIn: req.session.loggedIn
      });

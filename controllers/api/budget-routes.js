@@ -1,6 +1,4 @@
 const router = require('express').Router();
-//const { title } = require('process');
-//const sequelize = require('../config/connection');
 const { Budget, Transaction, User } = require('../../models/index');
 const withAuth = require('../../utils/auth');
 
@@ -70,13 +68,11 @@ router.get('/:id', (req, res) => {
 });
 
 router.post('/', (req, res) => {
-  // expects 
   Budget.create({
     title: req.body.title,
     budgetAmount: req.body.budgetAmount,  
     user_id: req.session.user_id
   })
-  console.log(title, user_id)
     .then(dbBudgetData => res.json(dbBudgetData))
     .catch(err => {
       console.log(err);

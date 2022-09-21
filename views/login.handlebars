@@ -13,15 +13,17 @@
 </form>
 
 <br>
-
+ <div class="row">
 <form class="signup-form">
-  <div>
+  <div class="row">
+    <div class="input-field col s12">
     <label for="username-signup">username:</label>
     <input type="text" id="username-signup" />
   </div>
   <div>
     <label for="email-signup">email:</label>
-    <input type="text" id="email-signup" />
+    <input type="email" id="email-signup" class="validate"/>
+    <span class="helper-text" data-error="wrong" data-success="right">Helper text</span>
   </div>
   <div>
     <label for="password-signup">password:</label>
@@ -29,6 +31,7 @@
   </div>
   <div>
     <button type="submit">signup</button>
+    </div>
   </div>
 </form>
 <script src="/javascript/login.js"></script>
