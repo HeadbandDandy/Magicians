@@ -38,12 +38,9 @@
     "mysql2": "^2.3.3",
     "node": "^18.9.0",
     "nodemon": "^2.0.20",
-    "nouislider": "^15.6.1",
     "passport": "^0.6.0",
     "passport-local": "^1.0.0",
-    "sequelize": "^6.22.0"
-  },
-  "devDependencies": {
-    "nodemon": "^2.0.20"
+    "sequelize": "^6.22.0",
+    "wnumb": "^1.2.0"
   }
 }

@@ -51,8 +51,22 @@ app.engine('handlebars', hbs.engine);
 //     layoutsDir: path.join(__dirname),
 //     partialsDir: path.join(__dirname)
 //   }))
+// app.engine('handlebars', hbs.engine({
+//     layoutsDir: __dirname + '/views/layouts',
+//     extname: '.handlebars',
+//     //new configuration parameter
+//     defaultLayout: 'main2',
+//     }));
+
+// app.get('/', (req, res) => {
+//     //instead of res.render('main', {layout: 'index'});
+//     res.render('main');
+//     });
 
 app.set('view engine', 'handlebars');
+
+app.use(express.static('images'));
+
 
 //express MiddleWare
 app.use(express.json());

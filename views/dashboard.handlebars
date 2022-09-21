@@ -1,3 +1,24 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DontGoBroke</title>
+   <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</head>
+
+<body>
+  
+
 <section>
   <h2>Create New Budget</h2>
 
@@ -8,7 +29,7 @@
     </div>
     <div>
       <label for="budget-amount">Amount</label>
-      <input id="budget-amount" name="budget-amount" />
+      <input type="text" id="budget-amount" name="budget-amount" />
     </div>
     <button type="submit" class="btn">Create</button>
   </form>
@@ -21,6 +42,9 @@
     {{#each budgets as |budget|}}
     <li>
       {{> budget-info budget}}
+<br>
+    
+
       <a href="/dashboard/edit/{{budget.id}}" class="edit-link">Edit Budget</a>
     </li>
     {{/each}}
@@ -30,3 +54,10 @@
 
 
 <script src="/javascript/add-budget.js"></script>
+
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
