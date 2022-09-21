@@ -18,8 +18,12 @@ const withAuth = require('../utils/auth');
       attributes: [
         'id',
         'user_id',
+        'budgetAmount',
+        'title',
         // 'transaction_text',
-        'created_at'],
+        'created_at',
+        //'username'
+    ],
       include: [
         {
           model: Transaction,
@@ -38,6 +42,7 @@ const withAuth = require('../utils/auth');
       .then(dbBudgetData => {
         // serialize data before passing to template
         const budgets = dbBudgetData.map(budget => budget.get({ plain: true }));
+        console.log(budgets);
         res.render('dashboard', { budgets, loggedIn: true });
       })
       .catch(err => {
@@ -69,8 +74,9 @@ const withAuth = require('../utils/auth');
       ]
     })
       .then(dbBudgetData => {
+        console.log(dbBudgetData);
         if (dbBudgetData) {
-          const post = dbBudgetData.get({ plain: true });
+          const budget = dbBudgetData.get({ plain: true });
           
           res.render('edit-budget', {
             budget,

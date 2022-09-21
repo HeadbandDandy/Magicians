@@ -84,6 +84,33 @@ router.post('/', (req, res) => {
     });
 });
 
+router.put('/:id', withAuth, (req, res) => {
+  console.log('---------------------------------');
+  console.log(req.session);
+  console.log(req.body, req.params);
+  Budget.update(
+    {
+      title: req.body.title
+    },
+    {
+      where: {
+        id: req.params.id
+      }
+    }
+  )
+    .then(dbBudgetData => {
+      if (!dbBudgetData) {
+        res.status(404).json({ message: 'No Budget found with this id' });
+        return;
+      }
+      res.json(dbBudgetData);
+    })
+    .catch(err => {
+      console.log(err);
+      res.status(500).json(err);
+    });
+});
+
 router.delete('/:id', withAuth, (req, res) => {
   console.log('id', req.params.id);
   Budget.destroy({

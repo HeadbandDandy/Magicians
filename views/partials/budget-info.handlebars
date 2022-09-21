@@ -1,12 +1,12 @@
 <article class="budget">
   <div class="title">
     
-    <div>{{id}}</div>
+    <div>{{title}}</div>
 
   </div>
 
   <div class="meta">
-    {{id}} {{Budget}} {{format_plural "dollar" }} by {{user_id}} on {{format_date created_at}}
+    {{budgetAmount}} {{format_plural "dollar" }} by {{user.username}} on {{format_date created_at}}
     |
     <a href="/budget/{{id}}">{{transactions.length}} {{format_plural "transaction" transactions.length}}</a>
   </div>

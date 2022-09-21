@@ -20,7 +20,7 @@ User.hasMany(Budget, {
 });
 
 Transaction.belongsTo(User, {
-    foreignKey: 'user_id'
+    foreignKey: 'user_username'
 })
 
 User.hasMany(Transaction, {
@@ -30,6 +30,7 @@ User.hasMany(Transaction, {
 Budget.belongsTo(User, {
     foreignKey: 'user_id'
 });
+
 
 
 module.exports = { Budget, Transaction, User};

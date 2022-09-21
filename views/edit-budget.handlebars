@@ -6,10 +6,10 @@
   <form class="edit-budget-form">
     <div>
       <input name="budget-title" type="text" value="{{budget.title}}" />
-      <span>({{format_url post.post_url}})</span>
+      <span></span>
     </div>
     <div>
-      {{user_id}} {{format_plural "point" post.vote_count}} by you on {{format_date post.created_at}}
+      {{user_id}} "point"  by you on {{format_date post.created_at}}
       |
       <a href="/budget/{{budget.id}}">{{budget.transactions.length}} {{format_plural "budget" budgets.transactions.length}}</a>
     </div>
@@ -28,7 +28,9 @@
   </div>
 </form>
 
-{{> transaction budget.transactions}}
+{{> transactions budget.transactions}}
+
+
 
 <script src="/javascript/edit-budget.js"></script>
 <script src="/javascript/delete-budget.js"></script>
