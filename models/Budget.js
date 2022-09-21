@@ -26,6 +26,13 @@ Budget.init(
                 key: 'id'
             }
         },
+        // user_username: {
+        //     type: DataTypes.STRING,
+        //     references: {
+        //         model: 'user',
+        //         key: 'username'
+        //     }
+        // },
         // transaction_text: {
         //     type: DataTypes.STRING,
         //     references: {
