@@ -79,7 +79,7 @@ app.use(require('./controllers/'));
 // require('./note').init(app)
 
 
-sequelize.sync({force: true }).then(() => {
+sequelize.sync({force: false }).then(() => {
     app.listen(PORT, () => console.log('Now Listening'))
 })
 
