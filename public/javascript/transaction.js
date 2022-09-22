@@ -6,8 +6,6 @@ async function transactionFormHandler(event) {
     const budget_id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
-  
-    if (transaction_text) {
       const response = await fetch('/api/transactions', {
         method: 'POST',
         body: JSON.stringify({
@@ -21,12 +19,12 @@ async function transactionFormHandler(event) {
       });
   
       if (response.ok) {
-        document.location.reload();
+        document.location.replace('/dashboard');
       } else {
         alert(response.statusText);
       }
     }
-  }
+  
   
   document.querySelector('.transaction-form').addEventListener('submit', transactionFormHandler);
   

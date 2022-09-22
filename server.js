@@ -66,7 +66,7 @@ app.engine('handlebars', hbs.engine);
 app.set('view engine', 'handlebars');
 
 app.use(express.static('images'));
-
+app.use(express.static('public'))
 
 //express MiddleWare
 app.use(express.json());

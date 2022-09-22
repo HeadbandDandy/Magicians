@@ -18,6 +18,9 @@
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/wnumb/1.2.0/wNumb.min.js"></script>
     <script src="https://code.jquery.com/jquery-latest.min.js"></script>
+    <<style>
+@import url('https://fonts.googleapis.com/css2?family=Rock+Salt&display=swap');
+</style>
 </head>
 
 <body>
@@ -25,7 +28,7 @@
   <nav>
     <div class="nav-wrapper black">
       
-      <a href="/">DontGoBroke</a>
+      <a href="/" style="font-family: 'Rock Salt', cursive;">DontGoBroke</a>
     
       <ul id="nav-mobile" class="right hide-on-med-and-down">
         
@@ -33,7 +36,7 @@
         <a href="/dashboard">dashboard  <button id="logout" class="btn-no-style">logout</button></a>
         {{else}}
             <!-- Modal Trigger -->
-  <a class="waves-effect waves-light btn modal-trigger" href="#modal1" >login</a>
+  <a class="waves-effect waves-light btn modal-trigger white black-text" href="#modal1" >login</a>
   
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
@@ -75,7 +78,7 @@
   </div>
   </div>
   <div>
-    <button type="submit">signup</button>
+    <button type="submit" class="waves-effect waves-light btn modal-trigger black white-text">signup</button>
     </div>
 </form>
 
@@ -85,7 +88,7 @@
     <div class="modal-footer">
       
     
-      <a href="/login" class="modal-close waves-effect waves-green btn-flat"><button type="submit">login</button></a>
+      <a href="/login" ><button type="submit"class="modal-close waves-effect waves-green btn black white-text">login</button></a>
       
     </div>
   </div>
@@ -118,7 +121,7 @@
     </div>
     <div class="section white">
       <div class="row container">
-        <h2 class="header">DontGoBroke</h2>
+        <h2 style= "font-family: 'Rock Salt', cursive;" class="header">DontGoBroke</h2>
         <p class="grey-text text-darken-3 lighten-3">A simple budget app, to keep you at ease.</p>
         {{#if loggedIn}}
         <h4>Your Balance</h4>
@@ -155,11 +158,12 @@ document.addEventListener('DOMContentLoaded', () => {
           <div class="footer-copyright">
             
             © 2022 Copyright
-            <a class="grey-text text-lighten-4 right" href="/">DontGoBroke</a>
+            <a class="white-text right" href="/" style="font-family: 'Rock Salt', cursive;">DontGoBroke</a>
             </div>
           </div>
         </footer>
   
+  <script src="/javascript/balance.js"></script>
   
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>
