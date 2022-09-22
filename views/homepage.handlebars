@@ -1,0 +1,25 @@
+<ol class="post-list">
+  {{!-- {{#each budgets as |budget|}}
+  <li>
+    <article class="budget">
+      <div class="title">
+        <a href="{{post_url}}" target="_blank">{{title}}</a>
+        <span>({{post_url}})</span>
+      </div>
+      <div class="budgetEach">
+        {{id}} 
+        |
+        <a href="/budget/{{id}}">{{budgets.length}} budget(s)</a>
+      </div>
+    </article>
+  </li>
+  {{/each}}
+</ol> --}}
+
+<ol class="budget-list">
+  {{#each budgets as |budget|}}
+  <li>
+    {{> budget-info budget }}
+  </li>
+  {{/each}}
+</ol>

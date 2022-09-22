@@ -1,0 +1,103 @@
+
+
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>DontGoBroke</title>
+   <!-- Compiled and minified CSS -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/css/materialize.min.css">
+
+    <!-- Compiled and minified JavaScript -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/materialize/1.0.0/js/materialize.min.js"></script>
+
+
+</head>
+
+<body>
+  
+
+<section>
+  <h2>Create New Budget</h2>
+
+  <form class="new-budget-form">
+    <div>
+      <label for="budget-title">Title</label>
+      <input type="text" id="budget-title" name="budget-title" />
+    </div>
+    <div>
+      <label for="budget-amount">Amount</label>
+      <input type="text" id="budget-amount" name="budget-amount" />
+    </div>
+    <button type="submit" class="btn">Create</button>
+  </form>
+</section>
+
+{{#if budgets.length}}
+<section>
+  <h2>Your Budgets</h2>
+  <ol>
+    {{#each budgets as |budget|}}
+    <li>
+      {{> budget-info budget}}
+<br>
+    
+
+      <a href="/dashboard/edit/{{budget.id}}" class="edit-link">Edit Budget</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+<h3>Add New Transaction</h3>
+
+<form class="transaction-form">
+  <div class="form-control">
+          <label for="transaction-text"></label>
+          <input name="transaction-text" type="text" id="transaction-text" placeholder="Enter a transaction" />
+        </div>
+        <div class="form-control">
+          <label for="transaction-amount">
+             <br />
+            </label>
+          <input name="transaction-amount" type="number" id="amount" placeholder="Enter amount..." />
+        </div>
+
+<br>
+  <div>
+    <button type="submit" class="btn">add transaction</button>
+  </div>
+</form>
+
+{{#if transactions.length}}
+<section>
+  <h2>Your transactions</h2>
+  <ol>
+    {{#each transactions as |transaction|}}
+    <li>
+      {{> transaction transaction}}
+      {{!-- {{> transactions budget.transactions}} --}}
+<br>
+    
+
+      <a href="/dashboard/edit/{{transaction.id}}" class="edit-link">Edit Transaction</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+
+
+<script src="/javascript/add-budget.js"></script>
+<script src="/javascript/transaction.js"></script>
+
+  {{#if loggedIn}}
+  <script src="/javascript/logout.js"></script>
+  {{/if}}
+</body>
+
+</html>
