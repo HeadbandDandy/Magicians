@@ -18,8 +18,8 @@ async function balanceFormHandler(event) {
     });
 
     if (response.ok) {
-        console.log('!!!!!!!!!!!!!!!!!');
-        console.log(response);
+        console.log('!!!!!!!!!!!!!!!?');
+        console.log(total);
         balance.innerText = `$${total}`;
         document.location.replace('/dashboard');
     } else {
