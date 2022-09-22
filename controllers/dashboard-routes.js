@@ -55,6 +55,8 @@ const withAuth = require('../utils/auth');
       attributes: [
         'id',
         'user_id',
+        'budgetAmount',
+        'title',
         // 'transaction_text',
         'created_at'],
       include: [
@@ -73,12 +75,12 @@ const withAuth = require('../utils/auth');
       ]
     })
       .then(dbBudgetData => {
-        console.log(dbBudgetData);
+       
         if (dbBudgetData) {
-          const budget = dbBudgetData.get({ plain: true });
-          
+          const budgets = dbBudgetData.get({ plain: true });
+          console.log(budgets);
           res.render('edit-budget', {
-            budget,
+            budgets,
             loggedIn: true
           });
         } else {
