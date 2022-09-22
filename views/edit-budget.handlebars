@@ -9,8 +9,8 @@
     </div>
     <div class="meta">
       <input name="budget-amount" type="text" value="{{budgets.budgetAmount}}" />
-    |
-    <a href="/budget/{{id}}">{{transactions.length}} {{format_plural "transaction" transactions.length}}</a>
+    {{!-- |
+    <a href="/budget/{{budget.id}}">{{budget.length}} {{format_plural "transaction" transactions.length}}</a> --}}
   </div>
   <br>
     <button type="submit" class="edit-budget-btn">Save Budget</button>
@@ -18,6 +18,8 @@
   </form>
 <br>
 </article>
+
+
 
 <h3>Add New Transaction</h3>
 <form class="transaction-form">
@@ -37,25 +39,8 @@
     <button type="submit">add transaction</button>
   </div>
 </form>
-{{#if transactions.length}}
-<section>
-  <h2>Your Budgets</h2>
-  <ol>
-    {{#each transactions as |transaction|}}
-    <li>
-      {{> transaction transaction}}
-      {{!-- {{> transactions budget.transactions}} --}}
-<br>
-    
 
-      <a href="/dashboard/edit/{{budget.id}}" class="edit-link">Edit Budget</a>
-    </li>
-    {{/each}}
-  </ol>
-</section>
-{{/if}}
-
-{{!-- {{> transactions budget.transactions}} --}}
+{{> transaction-info budget.transactions}}
 
 
 

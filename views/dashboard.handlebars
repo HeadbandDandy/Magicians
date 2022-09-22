@@ -29,9 +29,9 @@
     </div>
     <div>
       <label for="budget-amount">Amount</label>
-      <input type="text" id="budget-amount" name="budget-amount" />
+      <input type="number" id="budget-amount" name="budget-amount" />
     </div>
-    <button type="submit" class="btn">Create</button>
+    <button type="submit" class="btn black">Create</button>
   </form>
 </section>
 
@@ -52,34 +52,35 @@
 </section>
 {{/if}}
 
+<section>
 <h3>Add New Transaction</h3>
 
 <form class="transaction-form">
-  <div class="form-control">
-          <label for="transaction-text"></label>
-          <input name="transaction-text" type="text" id="transaction-text" placeholder="Enter a transaction" />
+  <div>
+          <label for="transaction-text">Transaction</label>
+          <input name="transaction-text" type="text" id="transaction-text"/>
         </div>
-        <div class="form-control">
-          <label for="transaction-amount">
-             <br />
-            </label>
-          <input name="transaction-amount" type="number" id="amount" placeholder="Enter amount..." />
+        <div>
+          <label for="transaction-amount">Amount</label>
+          <input name="transaction-amount" type="number" id="transaction-amount"/>
         </div>
-
 <br>
   <div>
-    <button type="submit" class="btn">add transaction</button>
+    <button type="submit" class="btn black">add transaction</button>
   </div>
 </form>
+</section>
+
 
 {{#if transactions.length}}
 <section>
   <h2>Your transactions</h2>
   <ol>
-    {{#each transactions as |transaction|}}
+    {{#each transactions}}
     <li>
-      {{> transaction transaction}}
-      {{!-- {{> transactions budget.transactions}} --}}
+
+      {{> transaction-info budget.transactions}}
+      
 <br>
     
 
@@ -94,6 +95,7 @@
 
 <script src="/javascript/add-budget.js"></script>
 <script src="/javascript/transaction.js"></script>
+{{!-- <script src="/javascript/balance.js"></script> --}}
 
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>

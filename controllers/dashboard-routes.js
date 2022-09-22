@@ -2,10 +2,6 @@ const router = require('express').Router();
 const { Budget, User, Transaction } = require('../models');
 const withAuth = require('../utils/auth');
 
-// router.get('/', (req, res) => {
-//     res.render('dashboard', { loggedIn: true });
-//   });
-
   router.get('/', withAuth, (req, res) => {
     console.log(req.session);
   console.log('======================');
@@ -50,6 +46,37 @@ const withAuth = require('../utils/auth');
       });
   });
 
+  router.get('/', withAuth, (req, res) => {
+    Transaction.findAll({
+        where: {
+            user_id: req.session.user_id
+        },
+        attributes: [
+            'id',
+            'transaction_text',
+            'transaction_amount',
+            'budget_id',
+            'created_at'
+          ],
+          include: [
+            {
+              model: Budget,
+              attributes: ['id' ]
+            }
+          ]
+        })
+      .then(dbTransactionData => {
+        //res.json(dbTransactionData))
+        const transactions = dbTransactionData.map(transaction => transaction.get({ plain: true}));
+        console.log(transactions);
+        res.render('dashboard', { transactions, loggedIn: true });
+      })
+      .catch(err => {
+        console.log(err);
+        res.status(500).json(err);
+      });
+    });
+
   router.get('/edit/:id', withAuth, (req, res) => {
     Budget.findByPk(req.params.id, {
       attributes: [
@@ -91,5 +118,40 @@ const withAuth = require('../utils/auth');
         res.status(500).json(err);
       });
   });
+
+  router.get('/edit/:id', withAuth, (req, res) => {
+    Transaction.findByPk(req.params.id, {
+        attributes: [
+            'id',
+            'transaction_text',
+            'transaction_amount',
+            'budget_id',
+            'created_at'
+          ],
+          include: [
+            {
+              model: Budget,
+              attributes: ['id' ]
+            }
+          ]
+        })
+      .then(dbTransactionData => {
+       
+        if (dbTransactionData) {
+          const transactions = dbTransactionData.get({ plain: true });
+          console.log(transactions);
+          res.render('edit-transaction', {
+            transactions,
+            loggedIn: true
+          });
+        } else {
+          res.status(404).end();
+        }
+      })
+      .catch(err => {
+        res.status(500).json(err);
+      });
+  });
+
 
 module.exports = router;

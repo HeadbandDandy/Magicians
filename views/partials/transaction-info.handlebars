@@ -1,0 +1,14 @@
+<article class="transaction">
+  <div class="title">
+    
+    <div>{{transaction_text}}!!!!</div>
+
+  </div>
+</script>
+<br>
+  <div class="meta">
+    {{transaction_amount}} {{format_plural "dollar" }} by {{user.username}} on {{format_date created_at}}
+    {{!-- |
+    <a href="/transaction/{{id}}">{{transactions.length}} {{format_plural "transaction" transactions.length}}</a> --}}
+  </div>
+</article>

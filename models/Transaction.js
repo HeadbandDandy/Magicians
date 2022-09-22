@@ -37,7 +37,7 @@ Transaction.init(
             //         key: 'title'
             //     }
         // },
-        user_username: {
+        user_id: {
             type: DataTypes.INTEGER,
             references: {
                 model: 'user',

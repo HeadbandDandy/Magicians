@@ -12,6 +12,7 @@ async function editFormHandler(event) {
       body: JSON.stringify({
         title,
         budgetAmount
+        
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -25,5 +26,5 @@ async function editFormHandler(event) {
     }
   }
   
-  document.querySelector('.edit-budget-btn').addEventListener('submit', editFormHandler);
+  document.querySelector('.edit-budget-form').addEventListener('submit', editFormHandler);
   

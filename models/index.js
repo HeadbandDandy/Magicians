@@ -20,7 +20,7 @@ User.hasMany(Budget, {
 });
 
 Transaction.belongsTo(User, {
-    foreignKey: 'user_username'
+    foreignKey: 'user_id'
 })
 
 User.hasMany(Transaction, {
