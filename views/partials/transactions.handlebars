@@ -1,4 +1,4 @@
-<div class="transactions">
+{{!-- <div class="transactions">
   {{#each this}}
   <section class="transaction">
     <div class="meta">
@@ -9,4 +9,40 @@
     </div>
   </section>
   {{/each}}
-</div>
+</div>  --}}
+
+
+{{!-- <h3>Add New Transaction</h3>
+<form class="transaction-form">
+  <div class="form-control">
+          <label for="text"></label>
+          <input type="text" id="text" placeholder="Enter a transaction" />
+        </div>
+        <div class="form-control">
+          <label for="amount">
+             <br />
+            </label>
+          <input name="amount" type="number" id="amount" placeholder="Enter amount..." />
+        </div>
+
+<br>
+  <div>
+    <button type="submit">add transaction</button>
+  </div>
+</form>  --}}
+
+<article class="budget">
+  <div class="title">
+    
+    <div>{{title}}!!!!</div>
+
+  </div>
+</script>
+<br>
+  <div class="meta">
+    {{budgetAmount}} {{format_plural "dollar" }} by {{user.username}} on {{format_date created_at}}
+    |
+    <a href="/budget/{{id}}">{{transactions.length}} {{format_plural "transaction" transactions.length}}</a>
+  </div>
+</article>
+

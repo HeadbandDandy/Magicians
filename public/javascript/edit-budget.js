@@ -5,10 +5,13 @@ async function editFormHandler(event) {
     const id = window.location.toString().split('/')[
       window.location.toString().split('/').length - 1
     ];
+    const budgetAmount = document.querySelector('input[name="budget-amount"]').value.trim();
+
     const response = await fetch(`/api/budgets/${id}`, {
       method: 'PUT',
       body: JSON.stringify({
-        title
+        title,
+        budgetAmount
       }),
       headers: {
         'Content-Type': 'application/json'
@@ -22,5 +25,5 @@ async function editFormHandler(event) {
     }
   }
   
-  document.querySelector('.edit-budget-form').addEventListener('submit', editFormHandler);
+  document.querySelector('.edit-budget-btn').addEventListener('submit', editFormHandler);
   

@@ -38,22 +38,25 @@
   <!-- Modal Structure -->
   <div id="modal1" class="modal">
     <div class="modal-content">
-      <h4>Modal Header</h4>
-      <form class="login-form">
-  <div>
+      <label>Login or Signup</label>
+    <form class="login-form">
+
+     <label>Login</label> 
+     <br>
     <label for="email-login">email:</label>
     <input type="text" id="email-login" />
-  </div>
+  
   <div>
     <label for="password-login">password:</label>
     <input type="password" id="password-login" />
   </div>
-  <div>
-    
-  </div>
+</div>
+  <div></div>
 </form>
 
 <br>
+
+ <label>Signup</label>
  <div class="row">
 <form class="signup-form">
   <div class="row">
@@ -70,16 +73,18 @@
     <label for="password-signup">password:</label>
     <input type="password" id="password-signup" />
   </div>
+  </div>
   <div>
     <button type="submit">signup</button>
     </div>
-  </div>
 </form>
-<script src="/javascript/login.js"></script>
 
-      
+<script src="/javascript/login.js"></script>
     </div>
+
     <div class="modal-footer">
+      
+    
       <a href="/login" class="modal-close waves-effect waves-green btn-flat"><button type="submit">login</button></a>
       
     </div>
@@ -116,6 +121,8 @@
         <h2 class="header">DontGoBroke</h2>
         <p class="grey-text text-darken-3 lighten-3">A simple budget app, to keep you at ease.</p>
         {{#if loggedIn}}
+        <h4>Your Balance</h4>
+    <h1 id="balance">$0.00</h1>
   <p> {{{ body }}}</p>
   {{/if}}
       

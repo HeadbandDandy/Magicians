@@ -52,8 +52,48 @@
 </section>
 {{/if}}
 
+<h3>Add New Transaction</h3>
+
+<form class="transaction-form">
+  <div class="form-control">
+          <label for="transaction-text"></label>
+          <input name="transaction-text" type="text" id="transaction-text" placeholder="Enter a transaction" />
+        </div>
+        <div class="form-control">
+          <label for="transaction-amount">
+             <br />
+            </label>
+          <input name="transaction-amount" type="number" id="amount" placeholder="Enter amount..." />
+        </div>
+
+<br>
+  <div>
+    <button type="submit" class="btn">add transaction</button>
+  </div>
+</form>
+
+{{#if transactions.length}}
+<section>
+  <h2>Your transactions</h2>
+  <ol>
+    {{#each transactions as |transaction|}}
+    <li>
+      {{> transaction transaction}}
+      {{!-- {{> transactions budget.transactions}} --}}
+<br>
+    
+
+      <a href="/dashboard/edit/{{transaction.id}}" class="edit-link">Edit Transaction</a>
+    </li>
+    {{/each}}
+  </ol>
+</section>
+{{/if}}
+
+
 
 <script src="/javascript/add-budget.js"></script>
+<script src="/javascript/transaction.js"></script>
 
   {{#if loggedIn}}
   <script src="/javascript/logout.js"></script>

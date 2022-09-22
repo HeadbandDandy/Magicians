@@ -86,7 +86,8 @@ router.put('/:id', withAuth, (req, res) => {
   console.log(req.body, req.params);
   Budget.update(
     {
-      title: req.body.title
+      title: req.body.title,
+      budgetAmount: req.body.budgetAmount
     },
     {
       where: {
