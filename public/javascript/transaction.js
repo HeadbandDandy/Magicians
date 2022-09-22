@@ -26,5 +26,5 @@ async function transactionFormHandler(event) {
     }
   
   
-  document.querySelector('.transaction-form').addEventListener('submit', transactionFormHandler);
+  document.querySelector('transactionForm').addEventListener('submit', transactionFormHandler);
   
