@@ -1,13 +1,7 @@
 const router = require('express').Router();
 //const sequelize = require('../config/connection');
 const { Budget, Transaction, User } = require('../models');
-  
-// // Route to display dynamic src images
-// router.get("/", (req, res) => {
-//    imageList = [];
-//   imageList.push({ src: "/images/starsstuff.png", name: "stars" });
-//   res.render("homepage", { imageList: imageList });
-// });
+
 
 router.get('/', (req, res) => {
   console.log(req.session);
