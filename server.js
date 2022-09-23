@@ -34,9 +34,6 @@ const sess = {
 
 app.use(session(sess));
 
-// app.use(passport.initialize())
-// app.use(passport.session())
-
 const helpers = require('./utils/helpers');
 
 const hbs = exphbs.create({ helpers });
