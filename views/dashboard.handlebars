@@ -45,7 +45,7 @@
   <h2>Your Budgets</h2>
   <ol>
     {{#each budgets as |budget|}}
-    <li>
+    <li class="center-align">
       {{> budget-info budget}}
 <br>
     
@@ -60,7 +60,7 @@
 <section>
 <h3>Add New Transaction</h3>
 
-<form class="transaction-form">
+<form class="transactionForm" name="transactionForm">
   <div>
           <label for="transaction-text">Transaction</label>
           <input name="transaction-text" type="text" id="transaction-text"/>

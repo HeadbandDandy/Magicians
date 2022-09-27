@@ -7,12 +7,9 @@ const exphbs = require('express-handlebars');
 //const routes = require('./controllers/')
 //const passport = require('passport')
 
-const app = express(),
-    PORT = process.env.PORT || 3001;
+const PORT = process.env.PORT || 3006;
+const app = express();
 
-const sequelize = require('./config/connection');
-const MySQLStore = require('express-mysql-session');
-const SequelizeStore = require('connect-session-sequelize')(session.Store);
 
 app.use(bodyParser.urlencoded({
     extended: false
@@ -37,31 +34,12 @@ const sess = {
 
 app.use(session(sess));
 
-// app.use(passport.initialize())
-// app.use(passport.session())
-
 const helpers = require('./utils/helpers');
 
 const hbs = exphbs.create({ helpers });
 
 app.engine('handlebars', hbs.engine);
-// app.engine('handlebars', hbs.engine({
-//     defaultLayout: 'main',
-//     extname: '.handlebars',
-//     layoutsDir: path.join(__dirname),
-//     partialsDir: path.join(__dirname)
-//   }))
-// app.engine('handlebars', hbs.engine({
-//     layoutsDir: __dirname + '/views/layouts',
-//     extname: '.handlebars',
-//     //new configuration parameter
-//     defaultLayout: 'main2',
-//     }));
 
-// app.get('/', (req, res) => {
-//     //instead of res.render('main', {layout: 'index'});
-//     res.render('main');
-//     });
 
 app.set('view engine', 'handlebars');
 
@@ -75,11 +53,7 @@ app.use(express.static(path.join(__dirname, 'public')));
 
 app.use(require('./controllers/'));
 
-// require('./user').init(app)
-// require('./note').init(app)
-
 
 sequelize.sync({force: false }).then(() => {
     app.listen(PORT, () => console.log('Now Listening'))
 })
-

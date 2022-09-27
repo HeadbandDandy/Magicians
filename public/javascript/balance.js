@@ -5,6 +5,8 @@ async function balanceFormHandler(event) {
 
     const amount = document.querySelector('input[name="transaction-amount"]').value;
 
+    const total = amount.reduce((acc, item) => (acc += item), 0).toFixed(2);
+
     const response = await fetch('/api/transactions', {
         method: 'POST',
         body: JSON.stringify({
@@ -16,8 +18,8 @@ async function balanceFormHandler(event) {
     });
 
     if (response.ok) {
-        console.log('!!!!!!!!!!!!!!!!!');
-        console.log(response);
+        console.log('!!!!!!!!!!!!!!!?');
+        console.log(total);
         balance.innerText = `$${total}`;
         document.location.replace('/dashboard');
     } else {
@@ -25,9 +27,9 @@ async function balanceFormHandler(event) {
     }
 }
 
-  document.querySelector('.transaction-amount').addEventListener('click', balanceFormHandler);
+  //document.querySelector('.transaction-amount').addEventListener('click', balanceFormHandler);
   
-
+  transactionForm.addEventListener('submit', balanceFormHandler);
 
 
 
